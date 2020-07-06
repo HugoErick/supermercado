@@ -1,0 +1,148 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+
+
+
+        </ul>
+        <button class="btn btn-outline-danger" (click)="salir()">
+            Salir
+        </button>
+
+
+    </div>
+</nav>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/home">Inicio</a>
+            </li>
+
+            <li>
+                <a href="/regisTrabajador">Registro de Trabajador</a>
+            </li>
+            <li>
+                <a href="/regisDepa">Registrar Departamento</a>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- Page Content -->
+
+    <div class="container">
+
+        <span class="login100-form-title login100-form-title--tomato py-3 ">
+            Registro Trabajador
+        </span>
+        <hr>
+        <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" class="w-100">
+
+            <div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label font-weight-bold">Nombre</label>
+                    <div class="col-10">
+
+                        <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                        <small *ngIf="nombreNoValido" class="text-danger">Ingrese un nombre</small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label font-weight-bold ">Apellidos</label>
+                    <div class="col-10">
+
+                        <input class="form-control" type="text" placeholder="Apellidos" formControlName="apellidos" [class.is-invalid]="apellidosNoValido">
+                        <small *ngIf="apellidosNoValido" class="text-danger">Los apellidos son requeridos</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label font-weight-bold ">Telefono</label>
+                <div class="col-md-10">
+
+                    <input class="form-control" type="tel" placeholder="555-5555-555" formControlName="tel" appPhoneMask [class.is-invalid]="telNoValido">
+                    <small *ngIf="telNoValido" class="text-danger">Ingrese un telefono valido</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label font-weight-bold ">Dias Laborales</label>
+                <div class="col-md-8 ">
+                    <div class=" form-check form-check-inline col-md-2 " *ngFor="let data of dias">
+                        <input type="checkbox" (change)="onChange(data.dia, $event.target.checked)"> {{ data.dia }}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-8">
+                    <button type="submit" class="btn btn-outline-primary">
+                Guardar
+              </button>
+                </div>
+            </div>
+
+        </form>
+        <div class="container">
+            <div class="m-5 ">
+                <h1>Listado de Trabajadores</h1>
+                <div class="border">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Dias Laborales</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let trabajador of trabajadores; let i = index">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{ trabajador.nombre }}</td>
+                                <td>
+                                    <label *ngIf="trabajador.encargado">Encargado </label>
+                                    <label *ngIf="!trabajador.encargado">Trabajador</label>
+                                </td>
+                                <td>{{ trabajador.diasLabor }}</td>
+                                <td>{{ trabajador.tel }}</td>
+                                <td>
+                                    <button *ngIf="!trabajador.encargado block" class="btn btn-info mr-1" [routerLink]="['/regisTrabajador',trabajador.id]">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+
+                                    <button *ngIf="!trabajador.encargado block" class="btn btn-danger mr-1">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "supermercado-c9c9c": {
+      "hosting": {
+        "market": [
+          "supermercado-c9c9c"
+        ]
+      }
+    }
+  }
+}

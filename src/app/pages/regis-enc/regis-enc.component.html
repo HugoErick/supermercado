@@ -1,0 +1,107 @@
+<div class="container">
+
+
+    <span class="login100-form-title login100-form-title--tomato py-3 ">
+        Registro Encargado
+    </span>
+    <hr>
+    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()" class="w-100">
+
+        <div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label font-weight-bold">Nombre</label>
+                <div class="col-10">
+
+                    <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                    <small *ngIf="nombreNoValido" class="text-danger">Ingrese un nombre</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label font-weight-bold ">Apellidos</label>
+                <div class="col-10">
+
+                    <input class="form-control" type="text" placeholder="Apellidos" formControlName="apellidos" [class.is-invalid]="apellidosNoValido">
+                    <small *ngIf="apellidosNoValido" class="text-danger">Los apellidos son requeridos</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold ">Correo</label>
+            <div class="col-md-10">
+
+                <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="emailNoValido">
+                <small *ngIf="emailNoValido" class="text-danger">Ingrese un email valido</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold ">Telefono</label>
+            <div class="col-md-10">
+
+                <input class="form-control" type="tel" placeholder="555-5555-555" formControlName="tel" appPhoneMask [class.is-invalid]="telNoValido">
+                <small *ngIf="telNoValido" class="text-danger">Ingrese un telefono valido</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold ">Password</label>
+            <div class="col-md-10">
+
+                <input class="form-control" type="password" placeholder="Contraseña" formControlName="pass" [class.is-invalid]="passNoValido">
+                <small *ngIf="passNoValido" class="text-danger">Ingrese una contraseña valida</small>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold ">Confirme Password</label>
+            <div class="col-md-10">
+
+                <input class="form-control" type="password" placeholder="Confirmar contraseña" formControlName="confirmPass" [class.is-invalid]="confirmPassNoValido">
+                <small *ngIf="confirmPassNoValido" class="text-danger">La contraseña no coincide con la anterior</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold ">Fecha de Nacimiento</label>
+            <div class="col-md-10">
+
+                <input class="form-control" type="date" formControlName="fn" [class.is-invalid]="fnNoValido">
+                <small *ngIf="fnNoValido" class="text-danger">Ingrese una fecha valida</small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label font-weight-bold">Genero</label>
+            <div class="col-md-10">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="genero" value="M" [class.is-invalid]="generoNovalido">
+                    <label class="form-check-label">Masculino</label>
+
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="genero" value="F" [class.is-invalid]="generoNovalido">
+                    <label class="form-check-label">Femenino</label>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+                <button type="submit" class="btn btn-outline-primary">
+            Guardar
+          </button>
+            </div>
+        </div>
+
+    </form>
+</div>

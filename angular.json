@@ -117,8 +117,16 @@
               "devServerTarget": "market:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "market"
+    }
+  },
+  "defaultProject": "market",
+  "cli": {
+    "analytics": "ae58c8f6-6432-4e16-b5db-1dbe34b24eb0"
+  }
 }
